@@ -1,0 +1,106 @@
+// WeldLine B2B Katalog & Teklif Sistemi - veritabanı şeması
+// Geliştirme: SQLite (file:./dev.db) — Yayın: PostgreSQL (provider'ı "postgresql" yapın)
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Category {
+  id        Int       @id
+  name      String
+  slug      String    @unique
+  sortOrder Int       @default(0)
+  products  Product[]
+}
+
+model Product {
+  id         Int             @id
+  name       String
+  slug       String          @unique
+  sku        String          @default("")
+  type       String          @default("simple") // simple | variable
+  shortDesc  String          @default("")
+  descHtml   String          @default("")
+  image      String          @default("")
+  sourceUrl  String          @default("")
+  isVisible  Boolean         @default(true)
+  sortOrder  Int             @default(0)
+  categoryId Int?
+  category   Category?       @relation(fields: [categoryId], references: [id])
+  options    ProductOption[]
+  createdAt  DateTime        @default(now())
+
+  @@index([categoryId])
+}
+
+model ProductOption {
+  id        Int                  @id @default(autoincrement())
+  productId Int
+  product   Product              @relation(fields: [productId], references: [id], onDelete: Cascade)
+  name      String
+  values    ProductOptionValue[]
+}
+
+model ProductOptionValue {
+  id       Int           @id @default(autoincrement())
+  optionId Int
+  option   ProductOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  value    String
+}
+
+model Quote {
+  id        Int         @id @default(autoincrement())
+  createdAt DateTime    @default(now())
+  status    String      @default("new") // new | contacted | quoted | closed
+  name      String
+  company   String      @default("")
+  taxOffice String      @default("")
+  taxNo     String      @default("")
+  email     String
+  phone     String      @default("")
+  city      String      @default("")
+  address   String      @default("")
+  notes     String      @default("")
+  kvkk      Boolean     @default(false)
+  isRead    Boolean     @default(false) // admin gördü mü
+  adminNote String      @default("")     // iç notlar (müşteriye gösterilmez)
+  vatRate   Int         @default(20)      // KDV %
+  items     QuoteItem[]
+  logs      QuoteStatusLog[]
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model QuoteItem {
+  id          Int     @id @default(autoincrement())
+  quoteId     Int
+  quote       Quote   @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  productId   Int?
+  productName String
+  sku         String  @default("")
+  options     String  @default("") // seçilen varyasyonlar - JSON metni
+  qty         Int     @default(1)
+  unitPrice   Float   @default(0)  // birim fiyat (TL)
+}
+
+model QuoteStatusLog {
+  id        Int      @id @default(autoincrement())
+  quoteId   Int
+  quote     Quote    @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  status    String
+  createdAt DateTime @default(now())
+}
+
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String   @default("")
+  createdAt    DateTime @default(now())
+}

@@ -1,0 +1,29 @@
+{
+  "name": "weldline-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "db:push": "prisma db push",
+    "db:seed": "node prisma/seed.mjs",
+    "setup": "prisma generate && prisma db push && node prisma/seed.mjs",
+    "images": "node scripts/download-images.mjs",
+    "translate:cats": "node scripts/translate-categories.mjs"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.mjs"
+  },
+  "dependencies": {
+    "@prisma/client": "5.22.0",
+    "next": "14.2.15",
+    "nodemailer": "6.9.16",
+    "sanitize-html": "2.13.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "prisma": "5.22.0"
+  }
+}
