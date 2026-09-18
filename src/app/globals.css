@@ -13,16 +13,26 @@ img{display:block;max-width:100%}
 
 /* Header */
 .stickyTop{position:sticky;top:0;z-index:40;box-shadow:var(--shadow)}
-.topbar{background:#15171a;color:#fff;border-bottom:3px solid var(--accent)}
-.topbar .inner{max-width:1280px;margin:0 auto;padding:15px 20px;display:flex;align-items:center;gap:18px}
-.topbar .tLogo{height:72px;width:auto;flex-shrink:0}
-.topbar .tTitle{font-weight:800;font-size:18px}
-.topbar .tSub{color:#b9bfc6;font-size:13px;margin-top:2px}
-@media(max-width:560px){.topbar .tTitle{font-size:15px}.topbar .tSub{font-size:12px}.topbar .tLogo{height:32px}}
+.topbar{background:#fff;color:var(--txt);border-bottom:3px solid var(--accent);position:relative;overflow:hidden}
+.topbar .inner{max-width:1280px;margin:0 auto;padding:22px 20px;display:flex;align-items:center;gap:22px;position:relative;z-index:2}
+.topbar .tLogo{height:60px;width:auto;flex-shrink:0}
+.topbar .tTitle{font-weight:800;font-size:20px;color:var(--txt)}
+.topbar .tSub{color:var(--muted);font-size:13.5px;margin-top:3px}
+.topbar::after{content:"";position:absolute;top:0;right:0;bottom:0;width:44%;background-image:radial-gradient(circle, rgba(227,6,19,.5) 2px, transparent 2.4px);background-size:18px 18px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 80%);mask-image:linear-gradient(90deg,transparent,#000 80%);opacity:.3}
+@media(max-width:560px){.topbar .tTitle{font-size:15px}.topbar .tSub{font-size:12px}.topbar .tLogo{height:40px}}
 header.site{background:#fff;color:var(--txt);border-bottom:1px solid var(--line)}
+.redstrip{background:linear-gradient(90deg,#8f0a10,var(--accent) 60%,var(--accent2));color:#fff;font-size:12.5px}
+.redstrip .inner{max-width:1280px;margin:0 auto;padding:6px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.redstrip span{display:inline-flex;align-items:center;gap:6px}
+.redstrip .rsLeft{opacity:.95}
+.redstrip a{color:#fff;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.redstrip a:hover{text-decoration:underline}
+.rsRight{display:inline-flex;gap:18px;flex-wrap:wrap}
+.hnavLink{font-weight:600;font-size:13.5px;color:var(--muted);white-space:nowrap}
+.hnavLink:hover{color:var(--accent)}
 .bar{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:12px 20px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.5px;white-space:nowrap}
-.brandLogo{height:38px;width:auto;display:block}
+.brandLogo{height:34px;width:auto;display:block}
 .logo .mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:18px}
 .logo small{display:block;font-weight:500;font-size:10px;color:#9fb4c9;letter-spacing:1px}
 .search{flex:1;position:relative;max-width:560px}
@@ -192,10 +202,16 @@ footer.site b{color:#fff}
 }
 
 /* ===================== ADMIN PANEL ===================== */
-.adminBare{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0f2742;padding:20px}
-.loginWrap{min-height:100vh;display:flex;align-items:center;justify-content:center}
-.loginCard{background:#fff;border-radius:14px;padding:30px 28px;width:min(380px,92vw);box-shadow:0 14px 40px rgba(0,0,0,.3)}
-.loginLogo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px;color:var(--navy);margin-bottom:18px}
+.adminBare{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:20px;position:relative;overflow:hidden}
+.adminBare::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle, rgba(227,6,19,.14) 2px, transparent 2.4px);background-size:20px 20px;-webkit-mask-image:linear-gradient(135deg,#000 10%,transparent 55%);mask-image:linear-gradient(135deg,#000 10%,transparent 55%)}
+.adminBare::after{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#8f0a10,var(--accent) 60%,var(--accent2))}
+.loginWrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative;z-index:1}
+.loginCard{background:#fff;border-radius:14px;border-top:4px solid var(--accent);padding:30px 28px;width:min(380px,92vw);box-shadow:0 14px 40px rgba(0,0,0,.12)}
+.loginCard .submitBtn{background:var(--accent)}
+.loginCard .submitBtn:hover{background:var(--accent2)}
+.loginBack{font-size:13px;color:var(--muted)}
+.loginBack:hover{color:var(--accent)}
+.loginLogo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--navy);margin-bottom:18px}
 .loginLogo .mark{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff}
 .loginCard h2{margin:0 0 16px;font-size:20px}
 

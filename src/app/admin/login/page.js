@@ -32,9 +32,9 @@ export default function Login() {
       <form className="loginCard" onSubmit={submit}>
         <div className="loginLogo">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/agen-logo.png" alt={SITE.brand} style={{ height: 34 }}
+          <img src="/agen-logo.png" alt={SITE.brand} style={{ height: 30 }}
             onError={(e) => { if (!e.currentTarget.dataset.f) { e.currentTarget.dataset.f = 1; e.currentTarget.src = '/logo.svg'; } }} />
-          <span style={{ color: '#9aa0a6', fontWeight: 500, fontSize: 13 }}>Yönetim Paneli</span>
+          <span style={{ color: '#9aa0a6', fontWeight: 600, fontSize: 13 }}>Yönetim Paneli</span>
         </div>
         <h2>Giriş Yap</h2>
         {err && <div className="formMsg err">{err}</div>}
@@ -44,6 +44,7 @@ export default function Login() {
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></div>
         <button className="submitBtn" disabled={busy}>{busy ? 'Giriş yapılıyor...' : 'Giriş Yap'}</button>
       </form>
+      <a className="loginBack" href="/">← Kataloğa dön</a>
     </div>
   );
 }

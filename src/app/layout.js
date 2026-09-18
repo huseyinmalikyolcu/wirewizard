@@ -2,7 +2,7 @@ import './globals.css';
 import CartProvider from '@/components/CartProvider';
 
 export const metadata = {
-  title: 'AGEN — Kaynak Tel İletim & Torç Ekipmanları',
+  title: 'Agen Robotics - Wirewizard',
   description: 'Robotik ve yarı otomatik kaynak için tel iletim, torç ve sarf ekipmanları kataloğu.',
 };
 
