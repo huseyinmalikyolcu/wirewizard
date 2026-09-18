@@ -52,6 +52,7 @@ export async function sendQuoteEmails({ id, customer: c, items }) {
   }
   const from = process.env.SMTP_FROM || process.env.SMTP_USER || SITE.email;
   const salesTo = process.env.SALES_EMAIL || SITE.email;
+  const base = (process.env.SITE_URL || 'https://wirewizard.agenrobotics.com').replace(/\/$/, '');
 
   // 1) Satış ekibine bildirim
   const salesHtml = `
@@ -69,6 +70,9 @@ export async function sendQuoteEmails({ id, customer: c, items }) {
         ${c.notes ? `<p style="margin:12px 0 0"><b>Notlar:</b><br>${esc(c.notes)}</p>` : ''}
         <h3 style="margin:18px 0 0">Talep Edilen Ürünler</h3>
         ${itemsTable(items)}
+        <p style="margin:22px 0 6px;text-align:center">
+          <a href="${base}/admin/teklif/${id}" style="display:inline-block;background:#e30613;color:#fff;padding:13px 26px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px">Teklifi Yönetim Panelinde Aç</a>
+        </p>
         <p style="color:#888;font-size:12px;margin-top:16px">Bu e-posta ${SITE.brand} katalog sitesinden otomatik gönderilmiştir. Yanıtladığınızda doğrudan müşteriye ulaşır.</p>
       </div>
     </div>`;
