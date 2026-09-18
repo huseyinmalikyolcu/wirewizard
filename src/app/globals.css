@@ -32,7 +32,7 @@ header.site{background:#fff;color:var(--txt);border-bottom:1px solid var(--line)
 .hnavLink:hover{color:var(--accent)}
 .bar{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:12px 20px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.5px;white-space:nowrap}
-.brandLogo{height:34px;width:auto;display:block}
+.brandLogo{height:26px;width:auto;display:block}
 .logo .mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:18px}
 .logo small{display:block;font-weight:500;font-size:10px;color:#9fb4c9;letter-spacing:1px}
 .search{flex:1;position:relative;max-width:560px}
